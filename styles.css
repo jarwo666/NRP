@@ -1,0 +1,868 @@
+/* CSS Custom Properties */
+:root {
+    --primary-color: #e53e3e;
+    --primary-dark: #c53030;
+    --secondary-color: #2d3748;
+    --accent-color: #ffd700;
+    --background-color: #ffffff;
+    --background-secondary: #f7fafc;
+    --background-dark: #1a202c;
+    --text-primary: #2d3748;
+    --text-secondary: #4a5568;
+    --text-light: #718096;
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --border-radius: 12px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --max-width: 1200px;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #1a202c;
+        --background-secondary: #2d3748;
+        --text-primary: #f7fafc;
+        --text-secondary: #e2e8f0;
+        --text-light: #a0aec0;
+        --border-color: #4a5568;
+    }
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, var(--background-secondary) 0%, var(--background-color) 100%);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container */
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+    background-size: 50px 50px;
+    animation: float 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0% { transform: translateX(-50px); }
+    100% { transform: translateX(0); }
+}
+
+.header-content {
+    position: relative;
+    z-index: 1;
+}
+
+.main-title {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-weight: 500;
+    opacity: 0.9;
+}
+
+/* Main Content */
+.main-content {
+    padding: 3rem 0;
+    display: grid;
+    gap: 3rem;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 2rem;
+    background: var(--background-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.hero-description {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* Features Section */
+.features {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--accent-color) 0%, #ffed4e 100%);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    color: var(--secondary-color);
+}
+
+.features-description {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 500;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+}
+
+/* Team Section */
+.team {
+    padding: 2rem;
+    background: var(--background-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+}
+
+.team-title {
+    text-align: center;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.team-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    border-radius: 2px;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.team-member {
+    text-align: center;
+    padding: 2rem;
+    background: var(--background-secondary);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+.member-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.member-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.member-role {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Appreciation Section */
+.appreciation {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    color: white;
+}
+
+.appreciation-text {
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Developer Team Section */
+.developer-section {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--primary-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.developer-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 80%, rgba(255, 193, 7, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(229, 62, 62, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.developer-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--accent-color);
+    margin-bottom: 2rem;
+    text-shadow: 0 0 20px var(--accent-color);
+    position: relative;
+    z-index: 2;
+}
+
+.developer-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.developer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.developer-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+    text-align: center;
+    position: relative;
+    backdrop-filter: blur(10px);
+}
+
+.developer-card.owner {
+    border-color: var(--accent-color);
+    background: rgba(255, 193, 7, 0.1);
+}
+
+.developer-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: var(--accent-color);
+}
+
+.dev-avatar {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    display: block;
+    animation: float 3s ease-in-out infinite;
+}
+
+.dev-name {
+    color: #fff;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.dev-role {
+    color: var(--accent-color);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.dev-description {
+    color: #ccc;
+    line-height: 1.6;
+    font-size: 0.9rem;
+}
+
+/* Modern Roleplay Section */
+.roleplay-section {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--background-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    position: relative;
+    z-index: 2;
+}
+
+.roleplay-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.roleplay-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    border-radius: 2px;
+}
+
+.roleplay-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* City Activities */
+.city-activities h3 {
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+}
+
+.city-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.city-location {
+    background: var(--background-secondary);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    text-align: center;
+}
+
+.city-location:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-color);
+}
+
+.location-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.city-location h4 {
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.city-location p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.activity-status {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+/* Technology Showcase */
+.technology-showcase h3 {
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.tech-feature {
+    background: linear-gradient(135deg, var(--background-secondary), rgba(255, 215, 0, 0.05));
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    text-align: center;
+}
+
+.tech-feature:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-color);
+}
+
+.tech-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.tech-feature h4 {
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.tech-feature p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Live Feed */
+.live-feed h3 {
+    color: var(--text-primary);
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+}
+
+.feed-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.feed-item {
+    background: var(--background-secondary);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--primary-color);
+    transition: var(--transition);
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.feed-item:hover {
+    transform: translateX(5px);
+    border-left-color: var(--accent-color);
+    box-shadow: var(--shadow-md);
+}
+
+.feed-type {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.5rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    min-width: 100px;
+    text-align: center;
+}
+
+.feed-type.government { background: var(--primary-color); }
+.feed-type.police { background: #2c3e50; }
+.feed-type.business { background: var(--accent-color); }
+.feed-type.medical { background: #e74c3c; }
+
+.feed-content {
+    flex: 1;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.feed-content strong {
+    color: var(--primary-color);
+}
+
+/* Particle Canvas */
+.particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Discord CTA Section */
+.discord-cta {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--background-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    position: relative;
+    z-index: 2;
+}
+
+.discord-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.discord-description {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.discord-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #5865f2;
+    color: white;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: var(--transition);
+    box-shadow: var(--shadow-md);
+    border: 2px solid transparent;
+}
+
+.discord-button:hover {
+    background: #4752c4;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-color);
+}
+
+.discord-icon {
+    font-size: 1.25rem;
+}
+
+.magic-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.magic-button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transform: rotate(45deg);
+    transition: opacity 0.3s;
+    opacity: 0;
+}
+
+.magic-button:hover::before {
+    opacity: 1;
+    animation: magicSwipe 0.6s ease-in-out;
+}
+
+@keyframes magicSwipe {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+}
+
+.magic-button:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+}
+
+.magic-icon {
+    font-size: 1.25rem;
+}
+
+/* Footer */
+.footer {
+    background: var(--secondary-color);
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+.footer-text {
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 0.5rem;
+    }
+
+    .header {
+        padding: 1.5rem 0;
+    }
+
+    .main-content {
+        padding: 2rem 0;
+        gap: 2rem;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .team-member {
+        padding: 1.5rem;
+    }
+
+    .discord-cta {
+        padding: 2rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 1.5rem;
+    }
+
+    .hero, .features, .team, .discord-cta {
+        padding: 1.5rem;
+    }
+
+    .team-member {
+        padding: 1rem;
+    }
+}
+
+/* Accessibility Improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* Focus styles for keyboard navigation */
+.discord-button:focus,
+.team-member:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    :root {
+        --border-color: #000000;
+        --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* Additional Gaming Animations */
+@keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+        transform: translate3d(0,0,0);
+    }
+    40%, 43% {
+        transform: translate3d(0, -30px, 0);
+    }
+    70% {
+        transform: translate3d(0, -15px, 0);
+    }
+    90% {
+        transform: translate3d(0, -4px, 0);
+    }
+}
+
+@keyframes magicSparkle {
+    0% { transform: scale(0) rotate(0deg); opacity: 1; }
+    50% { transform: scale(1) rotate(180deg); opacity: 0.8; }
+    100% { transform: scale(0) rotate(360deg); opacity: 0; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes textGlow {
+    0%, 100% { text-shadow: 0 0 5px currentColor; }
+    50% { text-shadow: 0 0 20px currentColor, 0 0 30px currentColor; }
+}
+
+/* Enhanced Team Member Animations */
+.team-member {
+    transition: var(--transition);
+    position: relative;
+}
+
+.team-member::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+    border-radius: var(--border-radius);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.team-member:hover::after {
+    opacity: 1;
+    animation: gradientShift 3s ease infinite;
+}
+
+.team-member:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Gaming Stats Enhancement */
+.game-stats span {
+    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: var(--transition);
+}
+
+.game-stats span:hover {
+    background: rgba(255, 215, 0, 0.2);
+    transform: scale(1.1);
+}
+
+/* Floating Animation for Icons */
+.member-icon {
+    animation: float 3s ease-in-out infinite;
+    transition: var(--transition);
+}
+
+.team-member:hover .member-icon {
+    animation: float 1s ease-in-out infinite;
+    transform: scale(1.2);
+}
+
+/* Enhanced Header Animation */
+.header {
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease infinite;
+}
+
+/* Magic Sparkle Effect */
+.magic-sparkle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: magicSparkle 2s ease-in-out forwards;
+}
+
+/* Print styles */
+@media print {
+    .header {
+        background: white !important;
+        color: black !important;
+        box-shadow: none;
+    }
+
+    .discord-button,
+    .magic-button,
+    .game-button {
+        display: none;
+    }
+
+    .particle-canvas {
+        display: none;
+    }
+
+    .container {
+        max-width: none;
+        padding: 0;
+    }
+}
